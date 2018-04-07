@@ -1,15 +1,14 @@
 
 public class Course implements DirectlyRelatable {
-	String courseID, courseName, preReqID, coReqID;
-	double credit;
-	/*Implemented method**/
-	public boolean isDirectlyRelated(Course C) {
-		return true;
+	private String courseID, courseName, preReqID, coReqID;
+	private double credit;
+
+	/* Implemented method **/
+	public boolean isDirectlyRelated(Course c) {
+		return (c.courseID==preReqID||c.courseID==coReqID);
 	}
-	
-	
-	
-/*mutators and accessors**/
+
+	/* mutators and accessors **/
 	public String getCourseID() {
 		return courseID;
 	}
@@ -49,20 +48,46 @@ public class Course implements DirectlyRelatable {
 	public void setCredit(double credit) {
 		this.credit = credit;
 	}
-	/*5 parameter constructor**/
-	public Course(String courseID,String courseName,int credit,String preReqID,String coReqID) {
-		this.courseID=courseID;
-		this.courseName=courseName;
-		this.credit=credit;
-		this.preReqID=preReqID;
-		this.coReqID=coReqID;
+
+	/* 5 parameter constructor **/
+	public Course(String courseID, String courseName, int credit, String preReqID, String coReqID) {
+		this.courseID = courseID;
+		this.courseName = courseName;
+		this.credit = credit;
+		this.preReqID = preReqID;
+		this.coReqID = coReqID;
 	}
-	/*copy constructor**/
+
+	/* copy constructor **/
 	public Course(Course c, String courseID) {
-		this.courseID=courseID;
-		courseName=c.courseName;
-		credit=c.credit;
-		preReqID=c.preReqID;
-		coReqID=c.coReqID;
+		this.courseID = courseID;
+		if (c!=null) {
+		courseName = c.courseName;
+		credit = c.credit;
+		preReqID = c.preReqID;
+		coReqID = c.coReqID;}
 	}
+
+	/* clone method **/
+	public Course clone(String courseID) {
+		return new Course(this, courseID);
+	}
+
+	/* toString method **/
+	public String toString() {
+		return "Course information\nCourse ID: " + courseID + "\nCourse name: " + courseName + "\nCredit: " + credit
+				+ "\nPrerequisite ID: " + preReqID + "\nCorequisite ID: " + coReqID;
+	}
+
+	/* equals method **/
+	@Override
+	public boolean equals(Object c) {
+		if ( c == null || this.getClass() != c.getClass()) {
+			return false;
+		}else {
+			Course y=(Course) c;
+			return(courseName==y.courseName&&credit==y.credit&&preReqID==y.preReqID&&coReqID==y.coReqID);
+		}
+	}
+	
 }

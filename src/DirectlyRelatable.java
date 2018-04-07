@@ -1,4 +1,4 @@
 
 public interface DirectlyRelatable {
-boolean isDirectlyRelated(Course C);
+boolean isDirectlyRelated(Course c);
 }
