@@ -53,6 +53,7 @@ public class CourseList {
 		head = cn;
 		// point cn to null
 		cn = null;
+		size++;
 	}
 
 	/** insertAtIndex method */
@@ -86,17 +87,44 @@ public class CourseList {
 					// insert new node
 					t.next = cn;
 					// add the value at index back to the list
-					t.next.next = temp;	
-					//point all temporary pointers to null
-					temp=t=cn=null;
-				}else {
-					//add c to start if index is 0
+					t.next.next = temp;
+					// point all temporary pointers to null
+					temp = t = cn = null;
+				} else {
+					// add c to start if index is 0
 					addToStart(c);
 				}
 			}
+			size++;
 		}
 	}
-
+	
+	/**deleteFromIndex method*/
+	public void deleteFromIndex(int index) throws NoSuchElementException {
+		if(index<0||index>size-1) {
+			throw new NoSuchElementException();
+		}else {
+			//pointer to navigate through the list
+			CourseNode t=head;
+			if(t!=null) {
+				if(index==0) {
+					//remove first element
+					head=head.next;
+				}else {
+					//go through list til index-1
+				for(int i=1;i<index;i++) {
+					t=t.next;
+				}
+					//skip element at index
+					t.next=t.next.next;
+				}
+				size--;
+			}else {
+				System.out.println("Nothing to delete");
+			}
+			t=null;
+		}
+	}
 	/** inner class CourseNode */
 	private class CourseNode {
 		private Course c1;
