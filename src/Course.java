@@ -1,4 +1,5 @@
 
+
 public class Course implements DirectlyRelatable {
 	private String courseID, courseName, preReqID, coReqID;
 	private double credit;
@@ -61,11 +62,10 @@ public class Course implements DirectlyRelatable {
 	/* copy constructor **/
 	public Course(Course c, String courseID) {
 		this.courseID = courseID;
-		if (c!=null) {
 		courseName = c.courseName;
 		credit = c.credit;
 		preReqID = c.preReqID;
-		coReqID = c.coReqID;}
+		coReqID = c.coReqID;
 	}
 
 	/* clone method **/

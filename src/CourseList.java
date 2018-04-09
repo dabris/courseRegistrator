@@ -11,21 +11,45 @@ public class CourseList {
 
 	/** copy constructor */
 	public CourseList(CourseList cList) {
-		//prevent crashing
+		// prevent crashing
 		if (cList != null) {
 			size = cList.size;
-			//pointer n to the new list
-			//extra pointer t to navigate through old list
-			CourseNode n, t=cList.head;
-			//go through the list until t points to null
-			while(t!=null) {
-				n=new CourseNode(t.c1.clone(t.c1.getCourseID()), null);
-				t=t.next;
+			if (cList.head == null) {
+				head = null;
+			} else {
+				// pointer t1 to the new list
+				// extra pointer t to navigate through old list
+				CourseNode t = cList.head, t1;
+				// clone head. of the original course list
+				t1 = head = new CourseNode(t.c1.clone(t.c1.getCourseID()), null);
+				// go through the list until t.next points to null
+				while (t.next != null) {
+					// move pointer of the original list
+					t = t.next;
+					// clone the new node
+					t1.next = new CourseNode(t.c1.clone(t.c1.getCourseID()), null);
+					// move pointer of the new list
+					t1 = t1.next;
+				}
+				// make the temporary pointers point to null
+				t = t1 = null;
 			}
-			
-
 		}
 
+	}
+
+	/** addToStart method */
+	public void addToStart(Course c) {
+		// create node with value c that points to head
+		CourseNode cn;
+		if (c != null) {
+			// in case c belongs to another course list, clone c
+			cn = new CourseNode(c.clone(c.getCourseID()), head);
+		} else {
+			cn = new CourseNode(c, head);
+		}
+		head = cn;
+		cn = null;
 	}
 
 	/** inner class CourseNode */
@@ -48,8 +72,30 @@ public class CourseList {
 
 		/** copy constructor */
 		public CourseNode(CourseNode cn) {
-			c1 = cn.c1;
-			next = cn.next;
+			if (cn != null) {
+				if (cn.c1 != null) {
+					// clone cn's course object
+					c1 = cn.c1.clone(cn.c1.getCourseID());
+				} else {
+					c1 = null;
+				}
+				if (cn.next != null) {
+					CourseNode t = cn;
+					CourseNode h, t1;
+					// head and pointer t1 at t.next(clone t.next)
+					t1 = h = new CourseNode(t.next.c1.clone(t.next.c1.getCourseID()), null);
+
+					while (t.next != null) {
+						t = t.next;
+						t1.next = new CourseNode(t.next.c1.clone(t.next.c1.getCourseID()), null);
+						t1 = t1.next;
+					}
+					next = h;
+					h = t1 = t = null;
+				} else {
+					next = null;
+				}
+			}
 		}
 
 		/** clone method */
@@ -75,4 +121,5 @@ public class CourseList {
 		}
 
 	}
+
 }
