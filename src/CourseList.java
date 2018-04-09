@@ -1,3 +1,4 @@
+import java.util.NoSuchElementException;
 
 public class CourseList {
 	private CourseNode head;
@@ -48,8 +49,52 @@ public class CourseList {
 		} else {
 			cn = new CourseNode(c, head);
 		}
+		// move head
 		head = cn;
+		// point cn to null
 		cn = null;
+	}
+
+	/** insertAtIndex method */
+	public void insertAtIndex(Course c, int index) throws NoSuchElementException {
+		CourseNode cn;
+		if (index < 0 || index > size - 1) {
+			throw new NoSuchElementException();
+		} else {
+			if (c == null) {
+				cn = new CourseNode(c, null);
+			} else {
+				// clone c in case c belongs to another list
+				cn = new CourseNode(c.clone(c.getCourseID()), null);
+			}
+			if (head == null) {
+				head = cn;
+				cn = null;
+			} else {
+				if (index > 0) {
+					// create pointer t to navigate through the list,
+					// and temp to store the value of the node at index of the original list
+					CourseNode t = head, temp;
+					if (index > 1) {
+						// point the pointer t to index-1
+						for (int i = 1; i < index; i++) {
+							t = t.next;
+						}
+					}
+					// store value at index of the original list
+					temp = t.next;
+					// insert new node
+					t.next = cn;
+					// add the value at index back to the list
+					t.next.next = temp;	
+					//point all temporary pointers to null
+					temp=t=cn=null;
+				}else {
+					//add c to start if index is 0
+					addToStart(c);
+				}
+			}
+		}
 	}
 
 	/** inner class CourseNode */
