@@ -125,6 +125,17 @@ public class CourseList {
 			t=null;
 		}
 	}
+	
+	/**deleteFromStart*/
+	public void deleteFromStart() {
+		deleteFromIndex(0);
+	}
+	
+	/**replaceAtIndex */
+	public void replaceAtIndex(Course c, int index) {
+		insertAtIndex(c,index);
+		deleteFromIndex(index+1);
+	}
 	/** inner class CourseNode */
 	private class CourseNode {
 		private Course c1;
