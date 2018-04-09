@@ -136,6 +136,43 @@ public class CourseList {
 		insertAtIndex(c,index);
 		deleteFromIndex(index+1);
 	}
+	
+	/**find method
+	 * this method will allow a security leak since it returns a pointer
+	 * this pointer can be used to alternate the elements of the list*/
+	public CourseNode find(String courseID) {
+		//t pointer to navigate through list and found pointer that points to the courseNode found
+		CourseNode t=head,found=null;
+		while(t!=null) {
+			if(t.c1.getCourseID().equals(courseID)) {
+				found=t;
+			}else {
+				t=t.next;
+			}
+		}
+		if (found==null) {
+			System.out.println("Course not found");
+		}
+		t=null;
+		return found;
+		
+	}
+	
+	/**contains method*/
+	public boolean contains(String courseID) {
+		CourseNode t=head;
+		while(t!=null) {
+			if(t.c1.getCourseID().equals(courseID)) {
+				t=null;
+				return true;
+			}else {
+				t=t.next;
+			}
+		}
+		t=null;
+		//if it breaks out of the while loop, then the course is not found
+		return false;
+	}
 	/** inner class CourseNode */
 	private class CourseNode {
 		private Course c1;
