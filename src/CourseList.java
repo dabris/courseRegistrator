@@ -173,6 +173,22 @@ public class CourseList {
 		//if it breaks out of the while loop, then the course is not found
 		return false;
 	}
+	
+	/**equals method*/
+	public boolean equals(CourseList cL) {
+		//copy CourseList to manipulate without affecting the original one
+		if(cL==null) {
+				return false;
+		}else {
+		CourseList temp=new CourseList(cL);
+		if(temp.size!=size) {
+			return false;
+		}else {
+			CourseNode t=head,t1=cL.head;
+		}
+		
+		
+	}}
 	/** inner class CourseNode */
 	private class CourseNode {
 		private Course c1;
