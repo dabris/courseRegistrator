@@ -16,6 +16,7 @@ public class EnrolmentResults {
 				String name=sc.next();
 				double credit=sc.nextDouble();
 				String preReq=sc.nextLine();
+				sc.nextLine();
 				if (preReq.equals("P")) {
 					preReq=null;
 				}else {
