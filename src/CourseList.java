@@ -38,6 +38,21 @@ public class CourseList {
 		}
 
 	}
+	/**toString
+	 * @return */
+	public String toString() {
+		CourseNode t=head;
+		String a=null;
+		while(t!=null) {
+			if(a==null) {
+				a=t.c1.toString();
+			}else {
+			a+=t.c1.toString();}
+			t=t.next;
+			
+		}
+		return a;
+	}
 
 	/** addToStart method */
 	public void addToStart(Course c) {

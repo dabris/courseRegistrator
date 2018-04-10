@@ -75,8 +75,8 @@ public class Course implements DirectlyRelatable {
 
 	/* toString method **/
 	public String toString() {
-		return "Course information\nCourse ID: " + courseID + "\nCourse name: " + courseName + "\nCredit: " + credit
-				+ "\nPrerequisite ID: " + preReqID + "\nCorequisite ID: " + coReqID;
+		return "Course information:\nCourse ID: " + courseID + "\nCourse name: " + courseName + "\nCredit: " + credit
+				+ "\nPrerequisite ID: " + preReqID + "\nCorequisite ID: " + coReqID+"\n\n";
 	}
 
 	/* equals method **/
