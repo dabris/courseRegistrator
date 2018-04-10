@@ -51,7 +51,7 @@ public class Course implements DirectlyRelatable {
 	}
 
 	/* 5 parameter constructor **/
-	public Course(String courseID, String courseName, int credit, String preReqID, String coReqID) {
+	public Course(String courseID, String courseName, double credit, String preReqID, String coReqID) {
 		this.courseID = courseID;
 		this.courseName = courseName;
 		this.credit = credit;
