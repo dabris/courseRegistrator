@@ -59,10 +59,6 @@ public class CourseList {
 		return a;
 	}
 
-	public String testFind(String courseID) {
-		return (find(courseID).c1.toString());
-	}
-
 	public String getC1PReq(String courseID) {
 		return (find(courseID).c1.getPreReqID());
 	}

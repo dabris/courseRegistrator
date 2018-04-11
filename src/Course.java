@@ -6,7 +6,7 @@ public class Course implements DirectlyRelatable {
 
 	/* Implemented method **/
 	public boolean isDirectlyRelated(Course c) {
-		return (c.courseID==preReqID||c.courseID==coReqID);
+		return (c.courseID.equalsIgnoreCase(preReqID)||c.courseID.equalsIgnoreCase(coReqID)||c.preReqID.equals(courseID)||c.coReqID.equalsIgnoreCase(courseID));
 	}
 
 	/* mutators and accessors **/

@@ -126,5 +126,36 @@ public class EnrolmentResults {
 			yn = key.next();
 		} while (yn.equalsIgnoreCase("y"));
 		key.close();
+		
+		
+		//method testing
+		//create courses
+		Course math=new Course("MATH201", "ALGEBRA",2.0,"MATH101",null);
+		Course french=new Course("FREN202","FRENCH_II",1.0,"FREN201","FREN316");
+		Course french2=new Course("FREN203","FRENCH_III",1.0,"FREN202","FREN233");
+		Course math2=new Course(math,"MATH301");
+		CourseList cl3=new CourseList(cL1);
+		//test equals method for courses
+		System.out.println("math==math2?"+math.equals(math2)+"\nmath==french?"+french.equals(math));
+		//test isDirectlyRelated
+		System.out.println("math related to french?"+math.isDirectlyRelated(french)+"\nFrench related to french2?"+french.isDirectlyRelated(french2));
+		//test insert at index
+		cl3.insertAtIndex(math, 2);
+		System.out.println("-------------insertAtIndex-----------------------------\n"+cl3.toString());
+		//test deletefromindex && deletefromstart
+		cl3.deleteFromIndex(2);
+		System.out.println("-------------deleteFromIndex----------------------------\n"+cl3.toString());
+		cl3.deleteFromStart();
+		System.out.println("------------DeleteFromSart-------------------------------\n"+cl3.toString());
+		//test replaceatindex
+		cl3.replaceAtIndex(french, 1);
+		System.out.println("------------replaceAtIndex-------------------------------\n"+cl3.toString());
+		//test equals
+		System.out.println("cL1==cl3?"+cl3.equals(cL1));
+		CourseList cl4=new CourseList(cl3);
+		System.out.println("cl4 is a copy of cl3, cl4==cl3?"+cl4.equals(cl3));
+		cl4.deleteFromIndex(2);
+		System.out.println("index 2 deleted, cl4==cl3?"+cl4.equals(cl3));
+		
 	}
 }
