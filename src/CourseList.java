@@ -53,7 +53,12 @@ public class CourseList {
 		}
 		return a;
 	}
-	
+	public String getC1PReq(String courseID) {
+		return(find(courseID).c1.getPreReqID());
+	}
+	public String getC1coReq(String courseID) {
+		return(find(courseID).c1.getCoReqID());
+	}
 
 	/** addToStart method */
 	public void addToStart(Course c) {

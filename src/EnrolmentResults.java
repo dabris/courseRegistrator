@@ -40,7 +40,7 @@ public class EnrolmentResults {
 		}
 		sc.close();
 		System.out.println(cL1.toString());
-
+		
 		Scanner key = new Scanner(System.in), reqSc = null;
 		System.out.println("Please enter the path of the file that you wish to read");
 		String fName = key.next();
@@ -61,6 +61,24 @@ public class EnrolmentResults {
 				}
 				requested = reqSc.nextLine();
 				cReq.add(requested);
+			}
+			for (int i = 0; i < cReq.size(); i++) {
+				if (cDone.contains(cL1.getC1PReq(cReq.get(i))) || cReq.contains(cL1.getC1coReq(cReq.get(i)))) {
+					if (cReq.contains(cL1.getC1coReq(cReq.get(i)))) {
+						System.out.println("Student can enrol in " + cReq.get(i)
+								+ " as he/she/they is enrolling for co-requisite " + cL1.getC1coReq(cReq.get(i)));
+					} else if (cDone.contains(cL1.getC1PReq(cReq.get(i)))) {
+						System.out.println("Student can enrol in " + cReq.get(i)
+								+ " as he/she/they has completed the pre-requisite " + cL1.getC1PReq(cReq.get(i)));
+					} else {
+						System.out.println("Student can enrol in " + cReq.get(i)
+								+ " as he/she/they is enrolling for co-requisite " + cL1.getC1coReq(cReq.get(i))
+								+ "and has completed the pre-requisite" + cL1.getC1PReq(cReq.get(i)));
+					}
+				}else {
+						System.out.println("Student can't enrol in "+cReq.get(i));
+					
+				}
 			}
 
 		} catch (FileNotFoundException e) {
