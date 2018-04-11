@@ -47,15 +47,15 @@ public class EnrolmentResults {
 		System.out.println(cL1.toString());
 		// string to see if user wants to enter another file
 		String yn = "n";
+		Scanner key = new Scanner(System.in);
 		// repeat if needed
 		do {
-			Scanner key = new Scanner(System.in), reqSc = null;
+			Scanner reqSc = null;
 			System.out.println("Please enter the name of the file you wish to read");
 			// String fName
 			// ="C:\\Users\\Bryia\\Desktop\\Eclipse\\249_A4\\Comp249_W18_Assg4_Files\\"+
 			// key.next();
 			String fName = "C:\\Users\\Dabris\\Desktop\\workspace\\249A4\\" + key.next();
-			System.out.println(fName);
 			try {
 				// read file
 				reqSc = new Scanner(new File(fName));
@@ -117,13 +117,14 @@ public class EnrolmentResults {
 				reqSc.close();
 
 			} catch (FileNotFoundException e) {
-				e.getMessage();
+				System.out.println(e.getMessage());
+				
 			}
 
 			System.out.println("Do you wish to open another file? (y/s)");
 			// Scanner again=new Scanner(System.in);
 			yn = key.next();
 		} while (yn.equalsIgnoreCase("y"));
-
+		key.close();
 	}
 }
