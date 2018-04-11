@@ -38,26 +38,37 @@ public class CourseList {
 		}
 
 	}
-	/**toString
-	 * @return */
+
+	/**
+	 * toString
+	 * 
+	 * @return
+	 */
 	public String toString() {
-		CourseNode t=head;
-		String a=null;
-		while(t!=null) {
-			if(a==null) {
-				a=t.c1.toString();
-			}else {
-			a+=t.c1.toString();}
-			t=t.next;
-			
+		CourseNode t = head;
+		String a = null;
+		while (t != null) {
+			if (a == null) {
+				a = t.c1.toString();
+			} else {
+				a += t.c1.toString();
+			}
+			t = t.next;
+
 		}
 		return a;
 	}
-	public String getC1PReq(String courseID) {
-		return(find(courseID).c1.getPreReqID());
+
+	public String testFind(String courseID) {
+		return (find(courseID).c1.toString());
 	}
+
+	public String getC1PReq(String courseID) {
+		return (find(courseID).c1.getPreReqID());
+	}
+
 	public String getC1coReq(String courseID) {
-		return(find(courseID).c1.getCoReqID());
+		return (find(courseID).c1.getCoReqID());
 	}
 
 	/** addToStart method */
@@ -169,9 +180,9 @@ public class CourseList {
 		while (t != null) {
 			if (t.c1.getCourseID().equals(courseID)) {
 				found = t;
-			} else {
-				t = t.next;
+				break;
 			}
+			t = t.next;
 		}
 		if (found == null) {
 			System.out.println("Course not found");
@@ -234,7 +245,6 @@ public class CourseList {
 
 		}
 	}
-	
 
 	/** inner class CourseNode */
 	private class CourseNode {

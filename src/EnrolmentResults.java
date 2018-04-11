@@ -2,6 +2,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class EnrolmentResults {
@@ -10,10 +11,10 @@ public class EnrolmentResults {
 		CourseList cL2 = new CourseList(cL1);
 		Scanner sc = null;
 		try {
-			// sc = new Scanner(new
-			// File("C:\\Users\\Dabris\\Desktop\\workspace\\249A4\\Syllabus.txt"));
-			sc = new Scanner(
-					new File("C:\\Users\\Bryia\\Desktop\\Eclipse\\249_A4\\Comp249_W18_Assg4_Files\\Syllabus.txt"));
+			sc = new Scanner(new File("C:\\Users\\Dabris\\Desktop\\workspace\\249A4\\Syllabus.txt"));
+			// sc = new Scanner(
+			// new
+			// File("C:\\Users\\Bryia\\Desktop\\Eclipse\\249_A4\\Comp249_W18_Assg4_Files\\Syllabus.txt"));
 			while (sc.hasNextLine()) {
 				String ID = sc.next();
 				String name = sc.next();
@@ -46,36 +47,52 @@ public class EnrolmentResults {
 		System.out.println(cL1.toString());
 		// string to see if user wants to enter another file
 		String yn = "n";
+		// repeat if needed
 		do {
-			
 			Scanner key = new Scanner(System.in), reqSc = null;
 			System.out.println("Please enter the name of the file you wish to read");
-			String fName ="C:\\Users\\Bryia\\Desktop\\Eclipse\\249_A4\\Comp249_W18_Assg4_Files\\"+ key.next();
+			// String fName
+			// ="C:\\Users\\Bryia\\Desktop\\Eclipse\\249_A4\\Comp249_W18_Assg4_Files\\"+
+			// key.next();
+			String fName = "C:\\Users\\Dabris\\Desktop\\workspace\\249A4\\" + key.next();
 			System.out.println(fName);
 			try {
+				// read file
 				reqSc = new Scanner(new File(fName));
 				// reads "finished"
 				reqSc.next();
+				// course finished
 				ArrayList<String> cDone = new ArrayList<String>();
+				// course requested
 				ArrayList<String> cReq = new ArrayList<String>();
 				String finished = reqSc.next();
 				String requested = null;
+
+				// read the file line by line
 				while (reqSc.hasNextLine()) {
-					System.out.println("reached");
+					// read until reaching the line requested
 					while (!finished.equalsIgnoreCase("requested")) {
-						// add all courses that ared finished
+						// add all courses that are finished
 						cDone.add(finished);
 						// find requested in document
 						finished = reqSc.next();
 					}
-					requested = reqSc.next();
-					cReq.add(requested);
+					if (reqSc.hasNext()) {
+						// when requested is found add its value the the arraylist
+						requested = reqSc.next();
+						cReq.add(requested);
+					}
 				}
+				System.out.println("Courses requested:" + Arrays.toString(cReq.toArray()) + "\nCourses done:"
+						+ Arrays.toString(cDone.toArray()));
 				if (cReq.isEmpty()) {
 					System.out.println("No enrollment courses found.");
 				} else {
 					for (int i = 0; i < cReq.size(); i++) {
-						if (cDone.contains(cL1.getC1PReq(cReq.get(i))) || cReq.contains(cL1.getC1coReq(cReq.get(i)))) {
+						if (cL1.getC1coReq(cReq.get(i)) == null && cL1.getC1PReq(cReq.get(i)) == null) {
+							System.out.println("Student can enrol in " + cReq.get(i) + " as all requirements are met.");
+						} else if (cDone.contains(cL1.getC1PReq(cReq.get(i)))
+								|| cReq.contains(cL1.getC1coReq(cReq.get(i)))) {
 							if (cReq.contains(cL1.getC1coReq(cReq.get(i)))) {
 								System.out.println("Student can enrol in " + cReq.get(i)
 										+ " as he/she/they is enrolling for co-requisite " + cL1.getC1coReq(cReq.get(i))
@@ -104,8 +121,8 @@ public class EnrolmentResults {
 			}
 
 			System.out.println("Do you wish to open another file? (y/s)");
-			Scanner again=new Scanner(System.in);
-			yn = again.next();
+			// Scanner again=new Scanner(System.in);
+			yn = key.next();
 		} while (yn.equalsIgnoreCase("y"));
 
 	}
